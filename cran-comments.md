@@ -1,8 +1,25 @@
+Added extra visualisation parameters and fixed a few minor bugs.
+
+# Changelog
+
+## Minor changes
+ 
+ * Added extra customisation parameters to `draw_trajectory_plot()` and `draw_trajectory_heatmap()`.
+ 
+## Optimisation
+
+ * Fixed internal function `check_numeric_matrix()` such that it does not run for ages when applied to 
+   a large sparse matrix.
+   
+ * Minor improvement in `infer_initial_trajectory()` when calculating the distance from points to 
+   along candidate segments.
+
+# Checks
 ## Test environments
-* local Fedora 28 install, R 3.5.0
-* OS X (on travis-ci), R 3.5.0
-* ubuntu 14.04 (on travis-ci), R 3.5.0
-* win-builder (on appveyor), R 3.5.0
+* local Fedora 30 install, R 3.6.0
+* OS X (on travis-ci), R 3.6.0
+* ubuntu 16.04 (on travis-ci), R 3.6.0
+* win-builder: release and devel
 
 ## R CMD check results
 

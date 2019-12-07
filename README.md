@@ -9,7 +9,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/rcannood/SCORPIUS?bra
 [![Coverage
 Status](https://codecov.io/gh/rcannood/SCORPIUS/branch/master/graph/badge.svg)](https://codecov.io/gh/rcannood/SCORPIUS?branch=master)
 
-**SCORPIUS an unsupervised approach for inferring developmental
+**SCORPIUS an unsupervised approach for inferring linear developmental
 chronologies from single-cell RNA sequencing data.** In comparison to
 similar approaches, it has three main advantages:
 
@@ -33,9 +33,8 @@ News:
     `citation("SCORPIUS")` to obtain the corresponding citation
     information.
 
-  - Check out our
-    [review](https://www.biorxiv.org/content/early/2018/03/05/276907) on
-    Trajectory Inference methods\!
+  - Check out our [review](http://dx.doi.org/10.1038/s41587-019-0071-9)
+    on Trajectory Inference methods\!
 
 ## Installing SCORPIUS
 
@@ -47,7 +46,7 @@ You can install:
     install.packages("SCORPIUS")
     ```
 
-  - the latest development version from github
+  - the latest development version from GitHub
     with
     
     ``` r
@@ -62,12 +61,12 @@ the [issues](https://github.com/rcannood/SCORPIUS/issues) page.
 To get started, read the introductory example below, or read one of the
 vignettes containing more elaborate examples:
 
-  - [Investigating differentiating dendritic cell
-    progenitors](vignettes/ginhoux.md): `vignette("ginhoux",
-    package="SCORPIUS")`
-  - [Inferring trajectories from simulated
-    data](vignettes/simulated-data.md): `vignette("simulated-data",
-    package="SCORPIUS")`
+  - [Investigating dendritic cell maturation in dendritic cell
+    progenitors](vignettes/ginhoux.md):  
+    `vignette("ginhoux", package="SCORPIUS")`
+  - [Trajectory inference from simulated
+    data](vignettes/simulated-data.md):  
+    `vignette("simulated-data", package="SCORPIUS")`
 
 ## Introductory example
 
@@ -129,7 +128,7 @@ gimp <- gene_importances(
 ) 
 ```
 
-To select the most important genes and scale its expession, run:
+To select the most important genes and scale its expression, run:
 
 ``` r
 gimp$qvalue <- p.adjust(gimp$pvalue, "BH", length(gimp$pvalue))
@@ -158,70 +157,39 @@ draw_trajectory_heatmap(expr_sel, traj$time, group_name, modules)
 
 ## Latest changes
 
-Check out `news(package = "SCORPIUS")` or [NEWS.md](inst/NEWS.md) for a
-full list of
-changes.
+Check out `news(package = "SCORPIUS")` or [NEWS.md](NEWS.md) for a full
+list of changes.
 
-<!-- This section gets automatically generated from inst/NEWS.md, and also generates inst/NEWS -->
+<!-- This section gets automatically generated from NEWS.md -->
 
-### Recent changes in SCORPIUS 1.0.3 (27-05-2019)
+### Recent changes in SCORPIUS 1.0.5
 
-#### Optimisation
+#### Major change
 
-  - `infer_trajectory()`: Use princurve’s `approx_points` parameter,
-    which greatly speeds up for trajectory inference for large number of
-    samples.
+  - Added a `ti_scorpius()` wrapper to SCORPIUS.
 
-#### Major changes
+#### Minor change
 
-  - Use dynutils’ `calculate_distance()` instead of
-    `correlation_distance()` and `euclidean_distance()`.
+  - Use `RANN::nn2()` instead of own nearest neighbour functions.
 
-#### Documentation
+  - Remove deprecated functions.
 
-  - Vignettes were updated.
+  - Use `lmds` instead of `dyndimred`.
 
-  - Added `cran-comments.md`.
-
-  - Added recent news (`inst/NEWS.md`).
-
-  - Added citation information (`inst/CITATION`).
-
-  - Added support for sparsity in `extract_modules()` and
-    `dimensionality_reduction()`.
+### Recent changes in SCORPIUS 1.0.4 (07-08-2019)
 
 #### Minor changes
 
-  - Use scaling functions from dynutils (`scale_minmax()`,
-    `scale_quantile()`, `scale_uniform()`).
+  - Added extra customisation parameters to `draw_trajectory_plot()` and
+    `draw_trajectory_heatmap()`.
 
-  - Expanded unit tests.
+#### Optimisation
 
-  - Renormalise the original ginhoux data using dynnormaliser and rerun
-    all vignettes.
+  - Fixed internal function `check_numeric_matrix()` such that it does
+    not run for ages when applied to a large sparse matrix.
 
-  - Moved `cmdscale_withlandmarks()` to dyndimred.
-
-#### Bug fixes
-
-  - `extract_modules()`: `smooth.spline()` now requires at least 4
-    unique values.
-
-#### Deprecation
-
-  - Deprecated unused functions `evaluate_trajectory()` and
-    `evaluate_dim_red()`. Use `dyneval::evaluate_ti_method()` instead.
-
-### Recent changes in SCORPIUS 1.0.2 (2018-06-29)
-
-  - MINOR CHANGE: Depend on dynutils for distance functions.
-
-  - MAJOR CHANGE `reduce_dimensionality()`: Merge
-    reduce\_dimensionality\_landmarked and reduce\_dimensionality
-    functions.
-
-  - REMOVAL: Removed `outlier_filter()`; there are much better scRNA-seq
-    preprocessing pipelines in existance by now.
+  - Minor improvement in `infer_initial_trajectory()` when calculating
+    the distance from points to along candidate segments.
 
 ## References
 

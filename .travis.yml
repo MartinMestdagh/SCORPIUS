@@ -1,16 +1,26 @@
 language: r
 sudo: required
-dist: trusty
-cache: packages
-addons:
-  apt:
-    packages:
-      - libusb-1.0-0-dev
-os:
- - linux
- - osx
-bioc_required: true
-r_packages:
- - covr
+cache:
+  directories:
+    - $HOME/.cache/hdf5
+    - $HOME/R/Library
+matrix:
+  include:
+#  - r: oldrel
+#    os: linux
+  - r: release
+    os: linux
+  - r: devel
+    os: linux
+#  - r: release
+#    os: osx
+before_install:
+- source <(curl -sSL https://raw.githubusercontent.com/dynverse/travis_scripts/master/helper.sh)
+- install_hdf5
+- install_dynverse
+install:
+- install_cran remotes covr
+- install_withdeps
 after_success:
  - R -e 'covr::codecov()'
+
