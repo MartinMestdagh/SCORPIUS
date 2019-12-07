@@ -10,7 +10,7 @@ bibliography: library.bib
 ```{r setup1, include=FALSE}
 knitr::opts_chunk$set(fig.path = "man/figures/README_", warning = FALSE, message = FALSE, error = FALSE, echo = TRUE)
 
-submission_to_cran <- FALSE
+submission_to_cran <- TRUE
 library(tidyverse)
 ```
 

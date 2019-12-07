@@ -1,18 +1,16 @@
-Added extra visualisation parameters and fixed a few minor bugs.
+Update to solve the `class(x) == "y"` issue. 
 
 # Changelog
 
-## Minor changes
- 
- * Added extra customisation parameters to `draw_trajectory_plot()` and `draw_trajectory_heatmap()`.
- 
-## Optimisation
-
- * Fixed internal function `check_numeric_matrix()` such that it does not run for ages when applied to 
-   a large sparse matrix.
+## Major change
+ * Added a `ti_scorpius()` wrapper to SCORPIUS.
    
- * Minor improvement in `infer_initial_trajectory()` when calculating the distance from points to 
-   along candidate segments.
+## Minor change
+ * Use `RANN::nn2()` instead of own nearest neighbour functions. 
+ 
+ * Remove deprecated functions.
+ 
+ * Use `lmds` instead of `dyndimred`.
 
 # Checks
 ## Test environments
